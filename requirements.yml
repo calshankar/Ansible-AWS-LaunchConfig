@@ -1,0 +1,5 @@
+# You can specify git tag, commit or branch for the version property
+- src: https://github.com/calshankar/Ansible-aws-sts-role.git
+  scm: git
+  version: master
+  name: aws-sts

@@ -1,0 +1,19 @@
+# Staging Environment
+
+# Admin Role for STS service
+Sts:
+  Role: arn:aws:iam::713475812120:role/AdminAccessforDeploy
+  Region: us-east-1
+
+launchConfig:
+  Name: shankar
+  Delete: true
+  image-id: ami-232424-bc
+  key-name: Ansible
+  security-groups: ['group', 'group2' ]
+  instance-type: t2.micro
+  volume-device_name: /dev/sda1
+  volume-size: 120
+  volume-type: io1
+  volume-iops: 3000
+  volumes-delete_on_termination: true
