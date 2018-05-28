@@ -1,6 +1,5 @@
 ---
 - block:
-
   - name: create timestamp fact
     set_fact:
       current_timestamp: "{{ (ansible_date_time.date + ansible_date_time.time) | regex_replace('[^\\d]','') }}"
@@ -12,11 +11,10 @@
       lc_image_id: "{{ launchConfig.get('image-id') | default(omit) }}"
       lc_access_key: "{{ launchConfig.get('key-name') | default(omit) }}"
       lc_security_groups: "{{ launchConfig.get('security-groups') | default(omit) }}"
-      lc_volumes_name: "{{ launchConfig.get('volume-device_name') | default(omit) }}"
-      lc_volume_size: "{{ launchConfig.get('volume-size') | default(omit) }}"
+      lc_instance_type: "{{ launchConfig.get('instance-type') | default('t2.micro') }}"
+      lc_volume_name: "{{ launchConfig.get('volume-device_name') | default(omit) }}"
       lc_volume_type: "{{ launchConfig.get('volume-type') | default(omit) }}"
-      lc_volume_iops: "{{ launchConfig.get('volume-iops') | default(omit) }}"
       lc_delete_on_termination: "{{ launchConfig.get('volumes-delete_on_termination') | default(False) | bool }}"
       debug: "{{ debug | default(False) | bool }}"            
   tags:
-    - gatherfact
+    - always

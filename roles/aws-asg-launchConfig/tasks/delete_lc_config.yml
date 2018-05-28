@@ -1,6 +1,11 @@
 ---
 - block:
   - name: Delete Launch Configuration
+    environment:
+      AWS_DEFAULT_REGION: "{{ Sts.Region }}"
+      AWS_ACCESS_KEY_ID: "{{ Sts.Credentials.get('AWS_ACCESS_KEY_ID') }}"
+      AWS_ACCESS_KEY: "{{ Sts.Credentials.get('AWS_ACCESS_KEY') }}"
+      AWS_SECRET_ACCESS_KEY: "{{ Sts.Credentials.get('AWS_SECRET_ACCESS_KEY') }}"
     shell: aws autoscaling delete-launch-configuration --launch-configuration-name "{{ lc_name }}"
     register: command_result
     ignore_errors: True

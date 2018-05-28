@@ -6,5 +6,7 @@
 
 # Role can be common but the var & env changes based on LaunchConfig
 
+# Use ansible_python_interpreter only when you notice error in loading boto module. Example Error msg `"msg": "boto3 required for this module"`
+
 [asg1]
-asg1 ansible_connection=local
+asg1 ansible_connection=local ansible_python_interpreter=/usr/local/bin/python
