@@ -52,3 +52,7 @@ The following command is used to create launchConfig, specifically using tags to
 `ansible-playbook site.yml -e 'debug=true' -e env=asg1 --skip-tags delete -vvv`
 
 The playbook logic customization/split is done via block in respective `main.yml` for each of the roles
+
+### Invoking STS Role
+
+The following is an example of a playbook configured to use this role.  Note the use of the [AWS STS role](https://github.com/calshankar/Ansible-aws-sts-role.git) to obtain STS credentials is separate from this role.
