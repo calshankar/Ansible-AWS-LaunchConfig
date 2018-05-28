@@ -1,4 +1,5 @@
 ---
+# Please note that the lc_delete variable bool is the criteria for this playbook execution 
 - block:
   - name: Delete Launch Configuration
     environment:
