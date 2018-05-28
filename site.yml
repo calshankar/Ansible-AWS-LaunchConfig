@@ -1,14 +1,14 @@
-# # Assume Role
-# - name: Assume Role
-#   hosts: "{{ env }}"
-#   gather_facts: no
-#   roles:
-#     - aws-sts
+# Assume Role
+- name: Assume Role
+  hosts: "{{ env }}"
+  gather_facts: no
+  roles:
+    - aws-sts
 
 # Modify ASG launch Config
 - name: Stack Deployment
   hosts: "{{ env }}"
-  #environment: "{{ Sts.Credentials }}"
+  environment: "{{ Sts.Credentials }}"
   roles:
     - aws-asg-launchConfig
 
