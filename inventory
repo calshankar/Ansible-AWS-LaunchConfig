@@ -1,6 +1,10 @@
-# Each environment must be defined here
+# Each environment for Launch Configuration must be defined here
 
 # Ensure each environment follows the example below and also create a file called group_vars/<environment>/vars.yml to hold environment specific settings
+
+# If you have x launch configuration, then ideally you will have x env & the vars for each can be loaded from group_var folder as mentioned in previous steps.
+
+# Role can be common but the var & env changes based on LaunchConfig
 
 [asg1]
 asg1 ansible_connection=local
