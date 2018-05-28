@@ -1,5 +1,4 @@
 build
-roles/*
 !roles/requirements.yml
 *.retry
 *.pyc

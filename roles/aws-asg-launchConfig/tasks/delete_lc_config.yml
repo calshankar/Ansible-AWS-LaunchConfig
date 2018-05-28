@@ -1,0 +1,16 @@
+---
+- block:
+  - name: Delete Launch Configuration
+    shell: aws autoscaling delete-launch-configuration --launch-configuration-name "{{ lc_name }}"
+    register: command_result
+    ignore_errors: True
+  
+  - name: Launch Configuration register result
+    debug: msg="{{ command_result }}"
+
+  - name: Fail if Launch Configuration Delete did not succeed
+    fail:
+      msg: "FAILED TO DELETE LAUNCH CONFIG {{ command_result.stderr }}"
+    when: command_result.rc != 0
+  tags:
+    - delete

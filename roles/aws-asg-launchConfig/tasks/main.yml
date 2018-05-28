@@ -1,0 +1,16 @@
+---
+
+  - block:
+    - import_tasks: init.yml
+
+  - block:
+    - import_tasks: delete_lc_config.yml
+    when: lc_delete and lc_name
+
+  - block:
+    - import_tasks: create_lc_config.yml
+    when: not lc_delete
+
+
+
+

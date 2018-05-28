@@ -1,0 +1,28 @@
+---
+- block:
+  - name: Creating Launch configuration
+    environment:
+      AWS_DEFAULT_REGION: "{{ Sts.Region }}"
+      AWS_ACCESS_KEY_ID: "{{ Sts.Credentials.get('AWS_ACCESS_KEY_ID') }}"
+      AWS_SECRET_ACCESS_KEY: "{{ Sts.Credentials.get('AWS_ACCESS_KEY') }}"
+    ec2_lc:
+      name: "{{ lc_name }}"
+      image_id: "{{ lc_image_id }}"
+      key_name: "{{ lc_access_key }}"
+      security_groups: "{{ lc_security_groups }}"
+      instance_type: "{{ lc_instance_type }}"
+      volumes:
+      - device_name: "{{ lc_volume_name }}"
+        volume_size: "{{ lc_volume_size }}"
+        volume_type: "{{ lc_volume_type }}"
+        iops: "{{ lc_volume_iops }}"
+        delete_on_termination: "{{ lc_delete_on_termination }}"
+    register: ec2_lc
+
+  - name: ARN of Launch configuration
+    debug:
+      msg: Created Launch configuration "{{ ec2_lc.name }}" with arn "{{ ec2_lc.arn }}"
+
+  tags:
+    - create
+  

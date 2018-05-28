@@ -1,0 +1,22 @@
+---
+- block:
+
+  - name: create timestamp fact
+    set_fact:
+      current_timestamp: "{{ (ansible_date_time.date + ansible_date_time.time) | regex_replace('[^\\d]','') }}"
+
+  - name: Launch Config gather facts
+    set_fact:  
+      lc_name: "{{ launchConfig.get('Name') | default(omit)}}"
+      lc_delete: "{{ launchConfig.get('Delete') | default(False) | bool }}"
+      lc_image_id: "{{ launchConfig.get('image-id') | default(omit) }}"
+      lc_access_key: "{{ launchConfig.get('key-name') | default(omit) }}"
+      lc_security_groups: "{{ launchConfig.get('security-groups') | default(omit) }}"
+      lc_volumes_name: "{{ launchConfig.get('volume-device_name') | default(omit) }}"
+      lc_volume_size: "{{ launchConfig.get('volume-size') | default(omit) }}"
+      lc_volume_type: "{{ launchConfig.get('volume-type') | default(omit) }}"
+      lc_volume_iops: "{{ launchConfig.get('volume-iops') | default(omit) }}"
+      lc_delete_on_termination: "{{ launchConfig.get('volumes-delete_on_termination') | default(False) | bool }}"
+      debug: "{{ debug | default(False) | bool }}"            
+  tags:
+    - gatherfact
